@@ -4,9 +4,8 @@ describe Sprinkle::Installers::PushText do
 
   before do
     @package = mock(Sprinkle::Package, :name => 'package')
-    @options = {:sudo => true}
   end
-
+  
   def create_text(text, path, options={}, &block)
     Sprinkle::Installers::PushText.new(@package, text, path, options, &block)
   end
