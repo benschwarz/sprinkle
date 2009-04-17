@@ -339,11 +339,17 @@ CODE
       @c = package :c do; recommends :d; end
       @d = package :d do; end
     end
+    
+    # Order
+    # c
+    # b
+    # a    
+    # d
 
     it 'should be able to return a dependency hierarchy tree' do
-      @a.tree.flatten.should == [ @d, @c, @b, @a ]
-      @b.tree.flatten.should == [ @d, @c, @b ]
-      @c.tree.flatten.should == [ @d, @c ]
+      @a.tree.flatten.should == [ @c, @d, @b, @a ]
+      @b.tree.flatten.should == [ @c, @d, @b ]
+      @c.tree.flatten.should == [ @c, @d ]
       @d.tree.flatten.should == [ @d ]
     end
 

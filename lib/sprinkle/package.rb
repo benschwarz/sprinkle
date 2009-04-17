@@ -245,6 +245,8 @@ module Sprinkle
           block.call(self, package, depth) if block
           packages << package.tree(depth + 1, &block)
         end
+        
+        packages
       end
 
       def to_s; @name; end
