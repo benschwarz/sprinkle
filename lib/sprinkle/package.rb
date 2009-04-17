@@ -228,13 +228,6 @@ module Sprinkle
       def tree(depth = 1, &block)
         packages = []
 
-        @recommends.each do |dep|
-          package = PACKAGES[dep]
-          next unless package # skip missing recommended packages as they can be optional
-          block.call(self, package, depth) if block
-          packages << package.tree(depth + 1, &block)
-        end
-
         @dependencies.each do |dep|
           package = PACKAGES[dep]
           raise "Package definition not found for key: #{dep}" unless package
@@ -243,6 +236,13 @@ module Sprinkle
         end
 
         packages << self
+        
+        @recommends.each do |dep|
+          package = PACKAGES[dep]
+          next unless package # skip missing recommended packages as they can be optional
+          block.call(self, package, depth) if block
+          packages << package.tree(depth + 1, &block)
+        end
       end
 
       def to_s; @name; end
