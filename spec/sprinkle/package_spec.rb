@@ -76,7 +76,7 @@ CODE
       pkg.dependencies.should == [:webserver, :database]
     end
 
-    it 'should optionally accept recommended dependencies' do
+    it 'should optionally accept recommended packages' do
       pkg = package @name do
         recommends :webserver, :database
       end
