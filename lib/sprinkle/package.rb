@@ -157,12 +157,12 @@ module Sprinkle
       end
 
       def gem(name, options = {}, &block)
-        @recommends << :rubygems
+        @dependencies << :rubygems
         @installer = Sprinkle::Installers::Gem.new(self, name, options, &block)
       end
 
       def source(source, options = {}, &block)
-        @recommends << :build_essential # Ubuntu/Debian
+        @dependencies << :build_essential # Ubuntu/Debian
         @installer = Sprinkle::Installers::Source.new(self, source, options, &block)
       end
       
